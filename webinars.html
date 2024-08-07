@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Josefin+Sans:ital,wght@0,100..700;1,100..700&display=swap" rel="stylesheet">
+    <link rel="icon" href="Giftedlogo.jpg" class="icon_logo">
+    <title>Gifted Company</title>
+    <style>
+        body{
+            background-color: cornflowerblue;
+            font-family: Josefin sans;
+            height: 100dvh;
+        }
+        /* header */
+        header{
+            position: relative;
+            padding: 0 ;
+            z-index: 100;
+        }
+        .navbar{
+            position: absolute;
+            width: 100%;
+            height: 60px;
+            max-width: 98%;
+            margin: 0 auto;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            position: fixed;
+            background: rgb(1, 197, 89);
+            backdrop-filter: blur(90px);
+            border-radius: 10px;
+        }
+
+        .navbar .logo{
+            font-size: 1.5rem;
+            font-weight: bold;
+            padding: .3rem;
+        }
+
+        .navbar .links a{
+            text-decoration: none;
+        }
+        .navbar .links{
+            padding-right: 1rem;
+            display: flex;
+            gap: 2rem;
+            font-size: 20px;
+            list-style: none;
+        }
+        .navbar .toggle_btn{
+            color: #fff;
+            padding: .6rem;
+            font-size: 1.5rem;
+            cursor: pointer;
+            display: none;
+        }
+
+        .dropdown_menu{
+            display: none;
+            position: absolute;
+            right: 2rem;
+            top: 70px;
+            height: 0;
+            width: 300px;
+            position: fixed;
+            background: rgba(0, 0, 0, 0.1);
+            backdrop-filter: blur(15px);
+            border-radius: 10px;
+            overflow: hidden;
+            transition: height .2s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+
+        .dropdown_menu.open{
+            height: 150px;
+        }
+
+        .dropdown_menu li{
+            padding: 0.6rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .dropdown_menu a{
+            color: #fff;
+            font-size: 1.2rem;
+            text-decoration: none;
+        }
+
+        .dropdown_menu a:hover{
+            color: #ffae00;
+        }
+
+        /* responsiveness*/
+        @media (max-width: 768px) {
+            .navbar .links{
+                display: none;
+            }
+
+            .navbar .toggle_btn{
+                display: block;
+            }
+
+            .dropdown_menu{
+                display: block;
+            }
+        }
+
+        @media (max-width: 576px){
+            .dropdown_menu{
+                left: 2rem;
+                width: unset;
+            }
+        }
+
+        article{
+            position: relative;
+            background-color: #9d72ce;
+            top: 5rem;
+            border-radius: 5px;
+        }
+
+        @media (max-width: 768px) {
+            article{
+                top: 4.5rem;
+            }
+        }
+        .webinars-section {
+            background-color: #7d5792;
+            padding: 2em;
+            border-radius: 5px;
+            text-align: center;
+        }
+
+        .webinars-list {
+            margin-top: 20px;
+        }
+
+        .webinars-list h2 {
+            font-size: 24px;
+            margin-bottom: 10px;
+        }
+
+        .webinars-list ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .webinars-list li {
+            margin-bottom: 20px;
+            padding: 20px;
+            border: 1px solid #ddd;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .webinars-list h3 {
+            font-size: 18px;
+            margin-bottom: 10px;
+        }
+
+        .webinars-list a {
+            text-decoration: none;
+            color: #337ab7;
+        }
+
+        .webinars-list a:hover {
+             color: #23527c;
+        }
+
+        .webinars-list .register-btn a{
+            background-color: #337ab7;
+            color: #fff;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .webinars-list .register-btn a:hover {
+            background-color: #23527c;
+        }
+
+        .webinars-archive {
+            margin-top: 40px;
+        }
+
+        .webinars-archive h2 {
+            font-size: 24px;
+            margin-bottom: 10px;
+        }
+
+        .webinars-archive ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .webinars-archive li {
+             margin-bottom: 10px;
+        }
+
+        .webinars-archive a {
+            text-decoration: none;
+            color: #00f7ffee;
+        }
+
+        .webinars-archive a:hover {
+            color: #1900ff;
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <main>
+            <div class="navbar">
+                <div class="logo">Gifted Design Co.</div>
+                <ul class="links">
+                    <li><a href="main.html">Home</a></li>
+                    <li><a href="">About</a></li>
+                    <li><a href="">Skills</a></li>
+                    <li><a href="">Contacts</a></li>
+                </ul>
+                <div class="toggle_btn">
+                    <i class="fa-solid fa-bars"></i>
+                </div>
+            </div>
+
+            <div class="dropdown_menu">
+                <li><a href="main.html">Home</a></li>
+                <li><a href="#">About</a></li>
+                <li><a href="#">Skills</a></li>
+                <li><a href="#">Contacts</a></li>
+            </div>
+        </main>
+    </header>
+
+    <article>
+        <section class="webinars-section">
+            <h1>Upcoming Webinars</h1>
+            <p>Join our expert-led webinars to learn about the latest trends and best practices in personal growth, professional development, and industry insights.</p>
+            <div class="webinars-list">
+              <h2>Upcoming Webinars</h2>
+              <ul>
+                <li>
+                  <h3><a href="#">Unlocking Your Potential: Strategies for Success</a></h3>
+                  <p>Join our expert coach, Jane Doe, as she shares practical strategies for achieving success in your personal and professional life.</p>
+                  <p><span class="date">december 22, 2024 | 2:00 PM EST</span> | <span class="duration">60 minutes</span></p>
+                  <button class="register-btn"><a href="webinar login.html">Register Now</a></button>
+                </li>
+                <li>
+                  <h3><a href="#">The Future of Work: Trends and Insights</a></h3>
+                  <p>Join our industry expert, John Smith, as he shares his insights on the latest trends shaping the future of work.</p>
+                  <p><span class="date">October 5, 2024 | 1:00 PM EST</span> | <span class="duration">90 minutes</span></p>
+                  <button  class="register-btn"><a href="webinar login.html" >Register Now</a></button>
+                </li>
+                <li>
+                  <h3><a href="#">Building Resilience: Strategies for Overcoming Adversity</a></h3>
+                  <p>Join our wellness expert, Emily Johnson, as she shares practical strategies for building resilience and overcoming adversity.</p>
+                  <p><span class="date">August 19, 2024 | 3:00 PM EST</span> | <span class="duration">60 minutes</span></p>
+                  <button class="register-btn"><a href="webinar login.html">Register Now</a></button>
+                </li>
+                <!-- Add more webinars here -->
+              </ul>
+            </div>
+            <div class="webinars-archive">
+              <h2>Webinar Archive</h2>
+              <p>Missed a webinar? Catch up on our past webinars and learn from our expert speakers.</p>
+              <ul>
+                <li><a href="https://mindfulnessinschools.org/wp-content/uploads/2017/09/MI_Building-the-Case_v1.1_Oct16-1.pdf">The Power of Mindfulness in the Workplace</a></li>
+                <li><a href="https://cra.org/cra-wp/wp-content/uploads/sites/8/2015/05/Building-Self-Confidence.pdf">5 Ways to Boost Your Confidence at Work</a></li>
+                <li><a href="https://harsh0620.github.io/PaperWrapper/Pdfs/selfdev/thich-nhat-hanh.pdf">The Art of Effective Communication</a></li>
+                <!-- Add more archived webinars here -->
+              </ul>
+            </div>
+        </section>
+    </article>
+
+
+    <script>
+        const toggleBtn = document.querySelector('.toggle_btn')
+        const toggleBtnIcon = document.querySelector('.toggle_btn i')
+        const dropDownMenu = document.querySelector('.dropdown_menu')
+
+        toggleBtn.onclick = function (){
+        dropDownMenu.classList.toggle('open')
+        const isOpen = dropDownMenu.classList.contains('open')
+
+        toggleBtnIcon.classList = isOpen
+        ? 'fa-solid fa-xmark'
+        : 'fa-solid fa-bars'
+        }
+    </script>    
+</body>
+</html>

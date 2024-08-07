@@ -1,0 +1,588 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Josefin+Sans:ital,wght@0,100..700;1,100..700&display=swap" rel="stylesheet">
+    <link rel="icon" href="Giftedlogo.jpg" class="icon_logo">
+    <title>Gifted Company</title>
+    <style>
+        body{
+            background-color: cornflowerblue;
+            font-family: Josefin sans;
+            height: 100dvh;
+        }
+        /* header */
+        header{
+            position: relative;
+            padding: 0 ;
+            z-index: 100;
+        }
+        .navbar{
+            position: absolute;
+            width: 100%;
+            height: 60px;
+            top: .2rem;
+            max-width: 98%;
+            margin: 0 auto;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            position: fixed;
+            background: rgb(1, 197, 89);
+            backdrop-filter: blur(90px);
+            border-radius: 10px;
+        }
+
+        .navbar .logo{
+            font-size: 1.5rem;
+            font-weight: bold;
+            padding: .3rem;
+        }
+
+        .navbar .links a{
+            text-decoration: none;
+        }
+        .navbar .links{
+            padding-right: 1rem;
+            display: flex;
+            gap: 2rem;
+            font-size: 20px;
+            list-style: none;
+        }
+        .navbar .toggle_btn{
+            color: #fff;
+            padding: .6rem;
+            font-size: 1.5rem;
+            cursor: pointer;
+            display: none;
+        }
+
+        .dropdown_menu{
+            display: none;
+            position: absolute;
+            right: 2rem;
+            top: 70px;
+            height: 0;
+            width: 300px;
+            position: fixed;
+            background: rgba(0, 0, 0, 0.1);
+            backdrop-filter: blur(15px);
+            border-radius: 10px;
+            overflow: hidden;
+            transition: height .2s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+
+        .dropdown_menu.open{
+            height: 150px;
+        }
+
+        .dropdown_menu li{
+            padding: 0.6rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .dropdown_menu a{
+            color: #fff;
+            font-size: 1.2rem;
+            cursor: pointer;
+            text-decoration: none;
+        }
+
+        .dropdown_menu a:hover{
+            color: #ffae00;
+        }
+
+        /* responsiveness*/
+        @media (max-width: 768px) {
+            .navbar .links{
+                display: none;
+            }
+
+            .navbar .toggle_btn{
+                display: block;
+            }
+
+            .dropdown_menu{
+                display: block;
+            }
+        }
+
+        @media (max-width: 576px){
+            .dropdown_menu{
+                left: 2rem;
+                width: unset;
+            }
+        }
+
+        article{
+            position: relative;
+            top: 2rem;
+            border-radius: 5px;
+        }
+
+        @media (max-width: 768px) {
+            article{
+                top: 2rem;
+                border-radius: 5px;
+            }
+        }
+        .our-team{
+            position: relative;
+            display: flex;
+            justify-content: space-between;
+        }
+        .team-page {
+            position: relative;
+            max-width: 100%;
+            margin: .4rem;
+            top: 2rem;
+            padding: 20px;
+            border-radius: 5px;
+            background-color: #d78bda;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .team-page h1{
+            text-align: center;
+            font-size: 30px;
+            margin: 0;
+        }
+        .team-members {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        .team-member {
+            margin: 10px;
+            text-align: center;
+        }
+
+
+        .team-member img {
+            width: 40%;
+            height: auto;
+            border-radius: 10px;
+            margin-bottom: 10px;
+        }
+
+        .team-member h2 {
+            font-size: 18px;
+            margin-bottom: 10px;
+            text-align: center;
+        }
+
+        .team-member p {
+            font-size: 14px;
+            margin-bottom: 10px;
+        }
+
+        .contact-us {
+            margin-top: 40px;
+            text-align: center;
+        }
+
+        .contact-us h2 {
+            font-size: 18px;
+            margin-bottom: 10px;
+        }
+
+        .contact-us ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .contact-us li {
+            display: inline-block;
+            margin: 10px;
+        }
+
+        .contact-us a {
+            text-decoration: none;
+            color: #010a13;
+        }
+
+        .contact-us a:hover {
+            color: #1e00c9;
+        }
+
+        .events-page {
+            position: relative;
+            max-width: 100%;
+            margin: 1.6rem .4rem;
+            top: 1rem;
+            padding: 20px;
+            border-radius: 5px;
+            background-color: #926b97;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+
+        .events-page h1{
+            text-align: center;
+            font-size: 30px;
+            margin: 0;
+        }
+        .events {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        .event {
+            margin: 20px;
+            text-align: center;
+        }
+
+        .event img {
+            width: 100%;
+            height: 70%;
+            margin: 0;
+            border-radius: 10px;
+            margin-bottom: 10px;
+        }
+
+        .event h2 {
+            font-size: 18px;
+            margin-bottom: 10px;
+        }
+
+        .event p {
+            font-size: 14px;
+            margin-bottom: 10px;
+        }
+
+        .projects {
+             margin-top: 40px;
+        }
+
+        .project {
+            margin: 20px;
+            text-align: center;
+        }
+
+        .project img {
+            width: 100%;
+            height: 40%;
+            border-radius: 10px;
+            margin-bottom: 10px;
+        }
+
+        .project h2 {
+            font-size: 18px;
+            margin-bottom: 10px;
+            text-align: center;
+        }
+
+        .p{
+            text-align: center;
+            text-decoration: underline;
+        }
+
+        .project p {
+            font-size: 14px;
+            margin-bottom: 10px;
+        }
+
+        /*=============popup section=================*/
+        #popup-container {
+            display: none; /* hide the popup container by default */
+            position: fixed;
+            top: 0;
+            right: 0;
+            bottom: 0;
+            left: 0;
+            background-color: transparent;
+            backdrop-filter: blur(15px);
+            z-index: 1900;
+        }
+
+        #popup {
+            padding: 20px;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 400px;
+            height: 200px;
+        }
+
+        #close-popup {
+        position: absolute;
+        top: 35rem;
+        right: 10px;
+        font-family: 19px;
+        background-color: #af7de9;
+        padding: .2rem;
+        font-family: josefin sans;
+        border-radius: 10px;
+        cursor: pointer;
+        }
+        /*=============contact section=================*/
+        .contact-section {
+            background-color: #a9d2e2;
+            padding: 2em;
+            padding: 20px;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.6);
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 400px;
+            height: 90%;;
+        }
+        
+        .contact-section h1{
+            font-size: 30px;
+            color: #337ab7;
+            margin: 0;
+            text-align: center;
+        }
+
+        /* #contact-form {
+            max-width: 600px;
+            margin: 40px auto;
+            padding: 20px;
+            border: 1px solid #ddd;
+            border-radius: 10px;
+            background-color: #af7de9;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.7);
+        }*/
+        
+        .form-group {
+            margin-bottom: 20px;
+        }
+        
+        label {
+            display: block;
+            margin-bottom: 10px;
+        }
+        
+        input, textarea, select {
+            width: 100%;
+            height: 35px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+        
+        button[type="submit"] {
+            background-color: #337ab7;
+            color: #fff;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            font-family: josefin sans;
+            cursor: pointer;
+        }
+        
+        button[type="submit"]:hover {
+            background-color: #23527c;
+        }
+
+    </style>    
+ </head>
+ <body>
+    
+    <header>
+        <main>
+            <div class="navbar">
+                <div class="logo">Gifted Design Co.</div>
+                <ul class="links">
+                    <li><a href="main.html">Home</a></li>
+                    <li><a href="our team.html">Our Team</a></li>
+                    <li><a href="service.html">Services</a></li>
+                    <li><a id="popup-trigger">Contacts Us</a></li>
+                </ul>
+                <div class="toggle_btn">
+                    <i class="fa-solid fa-bars"></i>
+                </div>
+            </div>
+
+            <div class="dropdown_menu">
+                <li><a href="main.html">Home</a></li>
+                <li><a href="our team.html">Our Team</a></li>
+                <li><a href="service.html">Services</a></li>
+                <li><a id="popup-trigger">Contact Us</a></li>
+            </div>
+        </main>
+    </header>
+
+    <article>
+        <section class="our-team">
+            <div class="team-page">
+                <h1>Meet Our Team</h1>
+                <p>At Gifted Company, we're a team of innovators dedicated to making a difference in the world. Our mission is to provide cutting-edge solutions that inspire and empower individuals.</p>
+                <section class="team-members">
+                    <div class="team-member">
+                        <img src="team member1.jpg" alt="John Doe">
+                        <h2>Sheldon Letting</h2>
+                        <p>CEO & Founder</p>
+                        <p>Sheldon Letting is the visionary behind Gifted Company. He's responsible for setting the company's direction and strategy.</p>
+                        <p>Contact: <a href="mailto:johndoe@giftedcompany.com">johndoe@giftedcompany.com</a> | <a href="https://twitter.com/johndoe">Twitter</a></p>
+                    </div>
+                    <div class="team-member">
+                        <img src="team member 5.jpg" alt="Jane Smith">
+                        <h2>Jane Smith</h2>
+                        <p>CTO & Co-Founder</p>
+                        <p>Jane is responsible for leading the technical development of our products and services.</p>
+                        <p>Contact: <a href="mailto:janesmith@giftedcompany.com">janesmith@giftedcompany.com</a> | <a href="https://linkedin.com/in/janesmith">LinkedIn</a></p>
+                    </div>
+                    <div class="team-member">
+                        <img src="team member 3.jpg" alt="Bob Johnson">
+                        <h2>Bob Johnson</h2>
+                        <p>Marketing Manager</p>
+                        <p>Bob is responsible for developing and executing our marketing strategy.</p>
+                        <p>Contact: <a href="mailto:bobjohnson@giftedcompany.com">bobjohnson@giftedcompany.com</a> | <a href="https://facebook.com/bobjohnson">Facebook</a></p>
+                    </div>
+                  <!-- Add more team members here -->
+                </section>
+                <section class="contact-us">
+                  <h2>Get in Touch</h2>
+                  <p>Have a question or want to learn more about Gifted Company? Contact us:</p>
+                  <ul>
+                    <li><a href="mailto:info@giftedcompany.com">info@giftedcompany.com</a></li>
+                    <li><a href="https://twitter.com/giftedcompany">Twitter</a></li>
+                    <li><a href="https://facebook.com/giftedcompany">Facebook</a></li>
+                    <li><a href="https://linkedin.com/company/giftedcompany">LinkedIn</a></li>
+                  </ul>
+                </section>
+            </div>
+        </section>
+
+        <aside>
+            <div class="events-page">
+                <h1>Our Events</h1>
+                <section class="events">
+                  <div class="event">
+                    <img src="event 1.jpg" alt="Event 1">
+                    <h2>Event 1: TechCrunch Disrupt 2022</h2>
+                    <p>We were proud to participate in TechCrunch Disrupt 2022, where we showcased our latest innovations.</p>
+                  </div>
+                  <div class="event">
+                    <img src="event 2.jpg" alt="Event 2">
+                    <h2>Event 2: Web Summit 2023</h2>
+                    <p>We attended Web Summit 2023, where we networked with industry leaders and learned about the latest trends.</p>
+                  </div>
+                  <div class="event">
+                    <img src="event party 1.jpg" alt="Event 3">
+                    <h2>Event 3: Launching of the first online course, "Unlocking Your Potential."</h2>
+                    <p>We launched our first online course, where we networked with industry leaders and learned about the latest trends.</p>
+                  </div>
+                  <!-- Add more events here -->
+                </section>
+                <h1>Our Projects</h1>
+                <section class="projects">
+                  <h2 class="p">Finished Projects</h2>
+                  <div class="project">
+                    <img src="mobile app dev.jpg" alt="Project 1">
+                    <h2>Project 1: Mobile App Development</h2>
+                    <p>We developed a mobile app for tracking personal finance.</p>
+                  </div>
+                  <div class="project">
+                    <img src="eccormerce plartform.jpg" alt="Project 2">
+                    <h2>Project 2: E-commerce Platform</h2>
+                    <p>We built an e-commerce platform for a leading retailer.</p>
+                  </div>
+                  <!-- Add more finished projects here -->
+                  <h2 class="p">Upcoming Projects</h2>
+                  <div class="project">
+                    <img src="virtual img.jpg" alt="Project 3">
+                    <h2>Project 3: Virtual Reality Experience</h2>
+                    <p>We're currently working on a virtual reality experience for education.</p>
+                  </div>
+                  <div class="project">
+                    <img src="blockchain img.jpg" alt="Project 4">
+                    <h2>Project 4: Blockchain-based Platform</h2>
+                    <p>We're developing a blockchain-based platform for supply chain management.</p>
+                  </div>
+                  <!-- Add more upcoming projects here -->
+                </section>
+            </div>
+        </aside>
+    </article>
+
+    <article id="popup-container">
+        <section class="contact-section" >
+            <form>
+                <h1>Get in Touch</h1>
+               <p>Have a question or want to learn more about our services? We'd love to hear from you!</p>
+                <div class="form-group">
+                    <label for="name">Name:</label>
+                    <input type="text" id="name" name="name" required>
+                </div>
+                <div class="form-group">
+                    <label for="email">Email:</label>
+                    <input type="email" id="email" name="email" required>
+                </div>
+                <div class="form-group">
+                    <label for="phone">Phone:</label>
+                    <input type="tel" id="phone" name="phone">
+                </div>
+                <div class="form-group">
+                    <label for="message">Message:</label>
+                    <textarea id="message" name="message" required></textarea>
+                </div>
+                <div class="form-group">
+                    <label for="subject">Subject:</label>
+                    <select id="subject" name="subject">
+                        <option value="">Select a subject</option>
+                        <option value="General Inquiry">General Inquiry</option>
+                        <option value="Coaching Services">Coaching Services</option>
+                        <option value="Training Programs">Training Programs</option>
+                        <option value="Partnership Opportunities">Partnership Opportunities</option>
+                        <option value="Other">Other</option>
+                    </select>
+                </div>
+                <button type="submit">Send Message</button>
+            </form>
+        </section>
+
+        <button id="close-popup">Close</button>
+    </article>
+
+    <script>
+        const toggleBtn = document.querySelector('.toggle_btn')
+        const toggleBtnIcon = document.querySelector('.toggle_btn i')
+        const dropDownMenu = document.querySelector('.dropdown_menu')
+
+        toggleBtn.onclick = function (){
+        dropDownMenu.classList.toggle('open')
+        const isOpen = dropDownMenu.classList.contains('open')
+
+        toggleBtnIcon.classList = isOpen
+        ? 'fa-solid fa-xmark'
+        : 'fa-solid fa-bars'
+        }
+
+        // Add lightbox functionality to event images
+        const eventImages = document.querySelectorAll('.event img');
+        eventImages.forEach((image) => {
+        image.addEventListener('click', () => {
+            // Open lightbox with image
+        });
+        });
+
+        const popupTrigger = document.getElementById('popup-trigger');
+        const popupContainer = document.getElementById('popup-container');
+        const closePopup = document.getElementById('close-popup');
+
+        popupTrigger.addEventListener('click', () => {
+        popupContainer.style.display = 'block';
+        });
+
+        closePopup.addEventListener('click', () => {
+        popupContainer.style.display = 'none';
+        });
+    </script>    
+ </body>
+ </html>

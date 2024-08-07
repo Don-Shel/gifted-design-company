@@ -1,0 +1,467 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Josefin+Sans:ital,wght@0,100..700;1,100..700&display=swap" rel="stylesheet">
+    <link rel="icon" href="" class="icon_logo">
+    <title>Gifted Company</title>
+    <style>
+        body{
+            background-color: cornflowerblue;
+            font-family: Josefin sans;
+            height: 100dvh;
+        }
+        /* header */
+        header{
+            position: relative;
+            padding: 0 ;
+            z-index: 100;
+        }
+        .navbar{
+            position: absolute;
+            width: 100%;
+            height: 60px;
+            max-width: 98%;
+            margin: 0 auto;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            position: fixed;
+            background: rgb(1, 197, 89);
+            backdrop-filter: blur(90px);
+            border-radius: 10px;
+        }
+
+        .navbar .logo{
+            font-size: 1.5rem;
+            font-weight: bold;
+            padding: .3rem;
+        }
+
+        .navbar .links a{
+            text-decoration: none;
+        }
+        .navbar .links{
+            padding-right: 1rem;
+            display: flex;
+            gap: 2rem;
+            font-size: 20px;
+            list-style: none;
+        }
+        .navbar .toggle_btn{
+            color: #fff;
+            padding: .6rem;
+            font-size: 1.5rem;
+            cursor: pointer;
+            display: none;
+        }
+
+        .dropdown_menu{
+            display: none;
+            position: absolute;
+            right: 2rem;
+            top: 70px;
+            height: 0;
+            width: 300px;
+            position: fixed;
+            background: rgba(0, 0, 0, 0.1);
+            backdrop-filter: blur(15px);
+            border-radius: 10px;
+            overflow: hidden;
+            transition: height .2s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+
+        .dropdown_menu.open{
+            height: 150px;
+        }
+
+        .dropdown_menu li{
+            padding: 0.6rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .dropdown_menu a{
+            color: #fff;
+            font-size: 1.2rem;
+            text-decoration: none;
+        }
+
+        .dropdown_menu a:hover{
+            color: #ffae00;
+        }
+
+        /* responsiveness*/
+        @media (max-width: 768px) {
+            .navbar .links{
+                display: none;
+            }
+
+            .navbar .toggle_btn{
+                display: block;
+            }
+
+            .dropdown_menu{
+                display: block;
+            }
+        }
+
+        @media (max-width: 576px){
+            .dropdown_menu{
+                left: 2rem;
+                width: unset;
+            }
+        }
+
+        article{
+            position: relative;
+            background-color: #9d72ce;
+            top: 5rem;
+            border-radius: 5px;
+        }
+
+        @media (max-width: 768px) {
+            article{
+                top: 4.5rem;
+            }
+        }
+        .ebooks-guides-section {
+        background-color: #ac77c569;
+        padding: 2em;
+        text-align: center;
+        }
+
+        .ebooks-guides-list {
+        margin-top: 20px;
+        }
+
+        .ebooks-guides-list h2 {
+        font-size: 24px;
+        margin-bottom: 10px;
+        }
+
+        .ebooks-guides-list ul {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+        }
+
+        .ebooks-guides-list li {
+        margin-bottom: 20px;
+        padding: 20px;
+        border: 1px solid #ddd;
+        border-radius: 10px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .ebooks-guides-list img {
+        width: 100px;
+        height: 100px;
+        margin: 10px;
+        border-radius: 10px;
+        }
+
+        .ebooks-guides-list h3 {
+        font-size: 18px;
+        margin-bottom: 10px;
+        }
+
+        .ebooks-guides-list a {
+        text-decoration: none;
+        color: #0516b4;
+        }
+
+        .ebooks-guides-list a:hover {
+        color: #006086;
+        }
+
+        .ebooks-guides-list .download-btn {
+        background-color: #337ab7;
+        color: #fff;
+        padding: 10px 20px;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        }
+
+        .ebooks-guides-list .download-btn:hover {
+        background-color: #23527c;
+        }
+
+        .ebooks-guides-categories {
+        margin-top: 40px;
+        }
+
+        .ebooks-guides-categories h2 {
+        font-size: 24px;
+        margin-bottom: 10px;
+        }
+
+        .ebooks-guides-categories ul {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+        }
+
+        .ebooks-guides-categories li {
+        margin-bottom: 10px;
+        }
+
+        .ebooks-guides-categories a {
+        text-decoration: none;
+        color: #00e1ff;
+        }
+
+        .ebooks-guides-categories a:hover {
+        color: #0014cc;
+        }
+
+    </style>    
+ </head>
+ <body>
+    
+    <header>
+        <main>
+            <div class="navbar">
+                <div class="logo">Gifted Design Co.</div>
+                <ul class="links">
+                    <li><a href="main.html">Home</a></li>
+                    <li><a href="">About</a></li>
+                    <li><a href="">Skills</a></li>
+                    <li><a href="">Contacts</a></li>
+                </ul>
+                <div class="toggle_btn">
+                    <i class="fa-solid fa-bars"></i>
+                </div>
+            </div>
+
+            <div class="dropdown_menu">
+                <li><a href="main.html">Home</a></li>
+                <li><a href="#">About</a></li>
+                <li><a href="#">Skills</a></li>
+                <li><a href="#">Contacts</a></li>
+            </div>
+        </main>
+    </header>
+
+    <article>
+        <section class="ebooks-guides-section">
+            <h1>eBooks and Guides</h1>
+            <p>Get instant access to our exclusive eBooks and guides, packed with valuable insights and practical tips to help you achieve your goals.</p>
+            <div class="ebooks-guides-list">
+                <h2>Featured Resources</h2>
+                <ul>
+                    <li>
+                        <img src="ebook1-cover.jpg" alt="eBook 1 Cover">
+                        <h3><a href="https://terrorgum.com/tfox/books/ultimateguidetoself-reliantlivingthe.pdf">The Ultimate Guide to Personal Growth</a></h3>
+                        <p>Discover the secrets to unlocking your full potential and achieving success in your personal and professional life.</p>
+                        <button class="download-btn" id="download-b">Download Now</button>
+                    </li>
+                    <li>
+                        <img src="ebook2-cover.jpg" alt="eBook 2 Cover">
+                        <h3><a href="https://harsh0620.github.io/PaperWrapper/Pdfs/selfdev/thich-nhat-hanh.pdf">The Art of Effective Communication</a></h3>
+                        <p>Learn how to communicate effectively and build strong relationships with colleagues, clients, and friends.</p>
+                        <button class="download-btn" id="download-bt">Download Now</button>
+                    </li>
+                    <li>
+                        <img src="guide1-cover.jpg" alt="Guide 1 Cover">
+                        <h3><a href="https://www.productivity.ac.uk/wp-content/uploads/2023/11/TPI-Agenda-for-Productivity-2023-FINAL.pdf">The Productivity Blueprint</a></h3>
+                        <p>Get instant access to our proven productivity system and start achieving more in less time.</p>
+                        <button class="download-btn" id="download-btn">Download Now</button>
+                    </li>
+                    <!--more eBooks and guides here -->
+                </ul>
+            </div>
+            <div class="ebooks-guides-categories">
+                <h2>Categories</h2>
+                <ul>
+                    <li><a href="#" id="download-l">Personal Growth</a></li>
+                    <li><a href="#" id="download-li">Professional Development</a></li>
+                    <li><a href="#" id="download-lin">Productivity</a></li>
+                    <li><a href="#" id="download-lin">Wellness</a></li>
+                    <li><a href="#" id="download-links">Industry Insights</a></li>
+                </ul>
+            </div>
+        </section>
+    </article>    
+    
+    <script>
+        const toggleBtn = document.querySelector('.toggle_btn')
+        const toggleBtnIcon = document.querySelector('.toggle_btn i')
+        const dropDownMenu = document.querySelector('.dropdown_menu')
+
+        toggleBtn.onclick = function (){
+        dropDownMenu.classList.toggle('open')
+        const isOpen = dropDownMenu.classList.contains('open')
+
+        toggleBtnIcon.classList = isOpen
+        ? 'fa-solid fa-xmark'
+        : 'fa-solid fa-bars'
+        }
+
+
+        //Book 1 download
+        <!-- JavaScript -->
+        const downloadB = document.getElementById('download-b');
+
+        downloadB.addEventListener('click', () => {
+        const bookUrl = 'https://terrorgum.com/tfox/books/ultimateguidetoself-reliantlivingthe.pdf'; // replace with the actual URL of the book
+        const fileName = 'The Ultimate Guide to Personal Growth'; // replace with the actual file name of the book
+
+        // Create a link element to download the book
+        const link = document.createElement('a');
+        link.href = bookUrl;
+        link.download = fileName;
+        link.target = '_blank';
+
+        // Click the link to download the book
+        link.click();
+        });
+
+        downloadB.addEventListener('click', async () => {
+        const bookUrl = 'https://terrorgum.com/tfox/books/ultimateguidetoself-reliantlivingthe.pdf'; // replace with the actual URL of the book
+        const fileName = 'The Ultimate Guide to Personal Growth'; // replace with the actual file name of the book
+
+        try {
+            const response = await fetch(bookUrl);
+            const blob = await response.blob();
+            const url = URL.createObjectURL(blob);
+            const link = document.createElement('a');
+            link.href = url;
+            link.download = fileName;
+            link.target = '_blank';
+            link.click();
+        } catch (error) {
+            console.error(error);
+            alert('Error downloading book. Please try again.');
+        }
+        });
+
+
+        //book 2 download
+        const downloadBt = document.getElementById('download-bt');
+
+        downloadBt.addEventListener('click', () => {
+        const bookUrl = 'https://harsh0620.github.io/PaperWrapper/Pdfs/selfdev/thich-nhat-hanh.pdf'; // replace with the actual URL of the book
+        const fileName = 'The Art of Effective Communication'; // replace with the actual file name of the book
+
+        // Create a link element to download the book
+        const link = document.createElement('a');
+        link.href = bookUrl;
+        link.download = fileName;
+        link.target = '_blank';
+
+        // Click the link to download the book
+        link.click();
+        });
+
+        downloadBt.addEventListener('click', async () => {
+        const bookUrl = 'https://harsh0620.github.io/PaperWrapper/Pdfs/selfdev/thich-nhat-hanh.pdf'; // replace with the actual URL of the book
+        const fileName = 'The Art of Effective Communication'; // replace with the actual file name of the book
+
+        try {
+            const response = await fetch(bookUrl);
+            const blob = await response.blob();
+            const url = URL.createObjectURL(blob);
+            const link = document.createElement('a');
+            link.href = url;
+            link.download = fileName;
+            link.target = '_blank';
+            link.click();
+        } catch (error) {
+            console.error(error);
+            alert('Error downloading book. Please try again.');
+        }
+        });
+
+
+        //book 3 download
+        const downloadBtn = document.getElementById('download-btn');
+
+        downloadBtn.addEventListener('click', () => {
+        const bookUrl = 'https://www.productivity.ac.uk/wp-content/uploads/2023/11/TPI-Agenda-for-Productivity-2023-FINAL.pdf'; // replace with the actual URL of the book
+        const fileName = 'The Productivity Blueprint'; // replace with the actual file name of the book
+
+        // Create a link element to download the book
+        const link = document.createElement('a');
+        link.href = bookUrl;
+        link.download = fileName;
+        link.target = '_blank';
+
+        // Click the link to download the book
+        link.click();
+        });
+
+        downloadBtn.addEventListener('click', async () => {
+        const bookUrl = 'https://www.productivity.ac.uk/wp-content/uploads/2023/11/TPI-Agenda-for-Productivity-2023-FINAL.pdf'; // replace with the actual URL of the book
+        const fileName = 'The Productivity Blueprint'; // replace with the actual file name of the book
+
+        try {
+            const response = await fetch(bookUrl);
+            const blob = await response.blob();
+            const url = URL.createObjectURL(blob);
+            const link = document.createElement('a');
+            link.href = url;
+            link.download = fileName;
+            link.target = '_blank';
+            link.click();
+        } catch (error) {
+            console.error(error);
+            alert('Error downloading book. Please try again.');
+        }
+        });
+    </script> 
+    <!--<script>    
+        //link download by text
+        const downloadLink = document.getElementById('download-link');
+        const bookD = {
+        name: 'Personal Growth',
+        downloadLink: 'https://example.com/books/book1.pdf'
+        };
+
+        downloadLink.href = bookD.downloadLink;
+        downloadLink.download = bookD.name + '.pdf';
+
+        const downloadLink = document.getElementById('download-link');
+        const bookDa = {
+        name: 'Professional Development',
+        downloadLink: 'https://example.com/books/book1.pdf'
+        };
+
+        downloadLink.href = bookData.downloadLink;
+        downloadLink.download = bookData.name + '.pdf';
+
+        const downloadLink = document.getElementById('download-link');
+        const bookDat = {
+        name: 'Productivity',
+        downloadLink: 'https://example.com/books/book1.pdf'
+        };
+
+        downloadLink.href = bookDat.downloadLink;
+        downloadLink.download = bookDat.name + '.pdf';
+
+        const downloadLink = document.getElementById('download-link');
+        const bookData = {
+        name: 'Wellness',
+        downloadLink: 'https://example.com/books/book1.pdf'
+        };
+
+        downloadLink.href = bookData.downloadLink;
+        downloadLink.download = bookData.name + '.pdf';
+
+        const downloadLink = document.getElementById('download-link');
+        const bookDatas = {
+        name: 'Industry Insights',
+        downloadLink: 'https://example.com/books/book1.pdf'
+        };
+
+        downloadLink.href = bookDatas.downloadLink;
+        downloadLink.download = bookDatas.name + '.pdf';
+    </script>  -->
+ </body> 
+ </html>      

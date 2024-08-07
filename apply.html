@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Josefin+Sans:ital,wght@0,100..700;1,100..700&display=swap" rel="stylesheet">
+    <link rel="icon" href="" class="icon_logo">
+    <title>Gifted Company</title>
+    <style>
+        body{
+            background-color: cornflowerblue;
+            font-family: Josefin sans;
+            height: 100dvh;
+        }
+        /* header */
+        header{
+            position: relative;
+            padding: 0 ;
+            z-index: 100;
+        }
+        .navbar{
+            position: absolute;
+            width: 100%;
+            height: 60px;
+            max-width: 98%;
+            margin: 0 auto;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            position: fixed;
+            background: rgb(1, 197, 89);
+            backdrop-filter: blur(90px);
+            border-radius: 10px;
+        }
+
+        .navbar .logo{
+            font-size: 1.5rem;
+            font-weight: bold;
+            padding: .3rem;
+        }
+
+        .navbar .links a{
+            text-decoration: none;
+        }
+        .navbar .links{
+            padding-right: 1rem;
+            display: flex;
+            gap: 2rem;
+            font-size: 20px;
+            list-style: none;
+        }
+        .navbar .toggle_btn{
+            color: #fff;
+            padding: .6rem;
+            font-size: 1.5rem;
+            cursor: pointer;
+            display: none;
+        }
+
+        .dropdown_menu{
+            display: none;
+            position: absolute;
+            right: 2rem;
+            top: 70px;
+            height: 0;
+            width: 300px;
+            position: fixed;
+            background: rgba(0, 0, 0, 0.1);
+            backdrop-filter: blur(15px);
+            border-radius: 10px;
+            overflow: hidden;
+            transition: height .2s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+
+        .dropdown_menu.open{
+            height: 150px;
+        }
+
+        .dropdown_menu li{
+            padding: 0.6rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .dropdown_menu a{
+            color: #fff;
+            font-size: 1.2rem;
+            text-decoration: none;
+        }
+
+        .dropdown_menu a:hover{
+            color: #ffae00;
+        }
+
+
+        /* responsiveness*/
+        @media (max-width: 768px) {
+            .navbar .links{
+                display: none;
+            }
+
+            .navbar .toggle_btn{
+                display: block;
+            }
+
+            .dropdown_menu{
+                display: block;
+            }
+        }
+
+        @media (max-width: 576px){
+            .dropdown_menu{
+                left: 2rem;
+                width: unset;
+            }
+        }
+
+        article{
+            position: relative;
+            background-color: #9d72ce;
+            top: 5rem;
+            border-radius: 5px;
+        }
+
+        @media (max-width: 768px) {
+            article{
+                top: 4.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <main>
+            <div class="navbar">
+                <div class="logo">Gifted Design Co.</div>
+                <ul class="links">
+                    <li><a href="main.html">Home</a></li>
+                    <li><a href="">About</a></li>
+                    <li><a href="">Skills</a></li>
+                    <li><a href="">Contacts</a></li>
+                </ul>
+                <div class="toggle_btn">
+                    <i class="fa-solid fa-bars"></i>
+                </div>
+            </div>
+
+            <div class="dropdown_menu">
+                <li><a href="main.html">Home</a></li>
+                <li><a href="#">About</a></li>
+                <li><a href="#">Skills</a></li>
+                <li><a href="#">Contacts</a></li>
+            </div>
+        </main>
+    </header>
+
+
+    <article>
+        <section class="apply">
+            <form id="apply-form">
+                <label for="name">Name:</label>
+                <input type="text" id="name" name="name"><br><br>
+                <label for="email">Email:</label>
+                <input type="email" id="email" name="email"><br><br>
+                <label for="resume">Resume:</label>
+                <input type="file" id="resume" name="resume"><br><br>
+                <label for="coverLetter">Cover Letter:</label>
+                <input type="file" id="coverLetter" name="coverLetter"><br><br>
+                <button id="apply-btn">Apply for Job at Gifted</button>
+              </form>
+        </section>
+    </article>
+
+    <script>
+        const toggleBtn = document.querySelector('.toggle_btn')
+        const toggleBtnIcon = document.querySelector('.toggle_btn i')
+        const dropDownMenu = document.querySelector('.dropdown_menu')
+
+        toggleBtn.onclick = function (){
+        dropDownMenu.classList.toggle('open')
+        const isOpen = dropDownMenu.classList.contains('open')
+
+        toggleBtnIcon.classList = isOpen
+        ? 'fa-solid fa-xmark'
+        : 'fa-solid fa-bars'
+        }
+
+        <!-- JavaScript -->
+        const applyForm = document.getElementById('apply-form');
+        const applyBtn = document.getElementById('apply-btn');
+
+        applyBtn.addEventListener('click', async (e) => {
+        e.preventDefault();
+        try {
+            const formData = new FormData(applyForm);
+            const userData = {
+            name: formData.get('name'),
+            email: formData.get('email'),
+            resume: formData.get('resume'),
+            coverLetter: formData.get('coverLetter')
+            };
+
+            // Make a POST request to the Gifted API to apply for the job
+            const apiUrl = 'https://api.gifted.com/jobs/apply';
+            const headers = {
+            'Content-Type': 'multipart/form-data'
+            };
+            const body = formData;
+            const response = await fetch(apiUrl, { method: 'POST', headers, body });
+
+            // Check if the response was successful
+            if (response.ok) {
+            alert('Application submitted successfully!');
+            } else {
+            alert('Error submitting application. Please try again.');
+            }
+        } catch (error) {
+            console.error(error);
+            alert('Error submitting application. Please try again.');
+        }
+        });
+    </script>
+</body>
+</html>

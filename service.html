@@ -1,0 +1,542 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Josefin+Sans:ital,wght@0,100..700;1,100..700&display=swap" rel="stylesheet">
+    <link rel="icon" href="Giftedlogo.jpg" class="icon_logo">
+    <title>Gifted Company</title>
+    <style>
+        body{
+            background-color: cornflowerblue;
+            font-family: Josefin sans;
+            height: 100dvh;
+        }
+        /* header */
+        header{
+            position: relative;
+            padding: 0 ;
+            z-index: 100;
+        }
+        .navbar{
+            position: absolute;
+            width: 100%;
+            height: 60px;
+            max-width: 98%;
+            margin: 0 auto;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            position: fixed;
+            background: rgb(1, 197, 89);
+            backdrop-filter: blur(90px);
+            border-radius: 10px;
+        }
+
+        .navbar .logo{
+            font-size: 1.5rem;
+            font-weight: bold;
+            padding: .3rem;
+        }
+
+        .navbar .links a{
+            text-decoration: none;
+        }
+        .navbar .links{
+            padding-right: 1rem;
+            display: flex;
+            gap: 2rem;
+            font-size: 20px;
+            list-style: none;
+        }
+        .navbar .toggle_btn{
+            color: #fff;
+            padding: .6rem;
+            font-size: 1.5rem;
+            cursor: pointer;
+            display: none;
+        }
+
+        .dropdown_menu{
+            display: none;
+            position: absolute;
+            right: 2rem;
+            top: 70px;
+            height: 0;
+            width: 300px;
+            position: fixed;
+            background: rgba(0, 0, 0, 0.1);
+            backdrop-filter: blur(15px);
+            border-radius: 10px;
+            overflow: hidden;
+            transition: height .2s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+
+        .dropdown_menu.open{
+            height: 150px;
+        }
+
+        .dropdown_menu li{
+            padding: 0.6rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .dropdown_menu a{
+            color: #fff;
+            font-size: 1.2rem;
+            cursor: pointer;
+            text-decoration: none;
+        }
+
+        .dropdown_menu a:hover{
+            color: #ffae00;
+        }
+
+
+        /* responsiveness*/
+        @media (max-width: 768px) {
+            .navbar .links{
+                display: none;
+            }
+
+            .navbar .toggle_btn{
+                display: block;
+            }
+
+            .dropdown_menu{
+                display: block;
+            }
+        }
+
+        @media (max-width: 576px){
+            .dropdown_menu{
+                left: 2rem;
+                width: unset;
+            }
+        }
+
+        article{
+            position: relative;
+            background-color: #9d72ce;
+            top: 5rem;
+            border-radius: 5px;
+        }
+
+        @media (max-width: 768px) {
+            article{
+                top: 4.5rem;
+            }
+        }
+
+        .services{
+            overflow: hidden;
+        }
+        .services h1 {
+            font-size: 48px;
+            margin-bottom: 2px;
+            text-align: center;
+        }
+
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            grid-gap: 20px;
+            padding: 2em;
+        }
+        
+        @media (max-width: 768px) {
+            .services-grid{
+                grid-template-columns: repeat(1, 1fr);
+            }
+        }
+        .service {
+            background-color: #fff;
+            padding: 20px;
+            border: 1px solid #ddd;
+            border-radius: 10px;
+            box-shadow: 0 10px 10px rgba(0, 0, 0, 0.8);
+        }
+        
+        .service i {
+            font-size: 35px;
+            margin-bottom: 3px;
+        }
+        
+        .service h2 {
+            font-size: 24px;
+            margin-bottom: 10px;
+        }
+        
+        .service button {
+            background-color: #5a42c7;
+            color: #fff;
+            border: none;
+            padding: 10px 20px;
+            font-size: 16px;
+            cursor: pointer;
+            border-radius: 10px;
+        }
+        
+        .service button:hover {
+            background-color: #0b76f0;
+        }
+
+        /*=============popup section=================*/
+        #popup-container {
+            display: none; /* hide the popup container by default */
+            position: fixed;
+            top: 0;
+            right: 0;
+            bottom: 0;
+            left: 0;
+            background-color: transparent;
+            backdrop-filter: blur(15px);
+            z-index: 1900;
+        }
+
+        #popup {
+            
+            padding: 20px;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 400px;
+            height: 200px;
+        }
+
+        #close-popup {
+        position: absolute;
+        top: 35rem;
+        right: 10px;
+        font-family: 19px;
+        background-color: #af7de9;
+        padding: .2rem;
+        font-family: josefin sans;
+        border-radius: 10px;
+        cursor: pointer;
+        }
+        /*=============contact section=================*/
+        .contact-section {
+            background-color: #a9d2e2;
+            padding: 2em;
+            padding: 20px;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.6);
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 400px;
+            height: 90%;;
+        }
+        
+        .contact-section h1{
+            font-size: 30px;
+            color: #337ab7;
+            margin: 0;
+            text-align: center;
+        }
+
+        /* #contact-form {
+            max-width: 600px;
+            margin: 40px auto;
+            padding: 20px;
+            border: 1px solid #ddd;
+            border-radius: 10px;
+            background-color: #af7de9;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.7);
+        }*/
+        
+        .form-group {
+            margin-bottom: 20px;
+        }
+        
+        label {
+            display: block;
+            margin-bottom: 10px;
+        }
+        
+        input, textarea, select {
+            width: 100%;
+            height: 35px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+        
+        button[type="submit"] {
+            background-color: #337ab7;
+            color: #fff;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            font-family: josefin sans;
+            cursor: pointer;
+        }
+        
+        button[type="submit"]:hover {
+            background-color: #23527c;
+        }
+
+        /*=====================footer section============*/
+        footer {
+            background-color: #333;
+            color: #fff;
+            padding: 2em;
+            text-align: center;
+        }
+        
+        .footer-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2em;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+        }
+        
+        @media (max-width: 768px) {
+            .footer-container{
+                flex-direction: column;
+                width: 80%;
+            }
+            .footer-section{
+                margin-bottom: 2px;
+            }
+        }
+
+        .footer-section {
+            flex-basis: 30%;
+            margin: 1px;
+        }
+        
+        .footer-section h3 {
+            font-size: 24px;
+        }
+        
+        .footer-section ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+        
+        .footer-section li {
+            margin-bottom: 10px;
+        }
+        
+        .footer-section a {
+            color: #fff;
+            text-decoration: none;
+        }
+        
+        .footer-section a:hover {
+            color: #08bdbd;
+        }
+        
+        .footer-copyright {
+            padding: 10px;
+            text-align: center;
+            color: #fff;
+            font-size: 14px;
+        }
+        
+        .footer-copyright p {
+            margin: 0;
+        }
+
+    </style>
+ </head>
+ <body>
+
+    <header>
+        <main>
+            <div class="navbar">
+                <div class="logo">Gifted Design Co.</div>
+                <ul class="links">
+                    <li><a href="main.html">Home</a></li>
+                    <li><a href="our team.html">Our Team</a></li>
+                    <li><a href="service.html">Services</a></li>
+                    <li><a id="popup-trigger">Contact Us</a></li>
+                </ul>
+                <div class="toggle_btn">
+                    <i class="fa-solid fa-bars"></i>
+                </div>
+            </div>
+
+            <div class="dropdown_menu">
+                <li><a href="main.html">Home</a></li>
+                <li><a href="our team.html">Our Team</a></li>
+                <li><a href="service.html">Services</a></li>
+                <li><a id="popup-trigger">Contact Us</a></li>
+            </div>
+        </main>
+    </header>
+
+    <article>
+        <section class="services" id="services">
+            <h1>Our Services</h1>
+            <p class="p">Unlock your potential with our expert guidance and support</p>
+            <aside class="services-grid">
+                <div class="service">
+                    <i class="fas fa-user"></i>
+                    <h2>Coaching and Mentorship</h2>
+                    <p>Get personalized guidance from our experienced coaches and mentors, tailored to your unique needs and goals.</p>
+                    <button>Learn More</button>
+                </div>
+                <div class="service">
+                    <i class="fas fa-laptop"></i>
+                    <h2>Online Courses and Training</h2>
+                    <p>Learn new skills and knowledge with our interactive online courses and training programs.</p>
+                    <button>Learn More</button>
+                </div>
+                <div class="service">
+                    <i class="fas fa-users"></i>
+                    <h2>Community and Networking</h2>
+                    <p>Connect with like-minded individuals and industry experts through our community and networking events.</p>
+                    <button>Learn More</button>
+                </div>
+                <div class="service">
+                    <i class="fas fa-briefcase"></i>
+                    <h2>Career Development</h2>
+                    <p>Get expert guidance on resume building, interview preparation, and job search strategies.</p>
+                    <button>Learn More</button>
+                </div>
+                    <div class="service">
+                    <i class="fas fa-chart-line"></i>
+                    <h2>Business Consulting</h2>
+                    <p>Get expert advice on business strategy, marketing, and operations to help your business thrive.</p>
+                    <button>Learn More</button>
+                </div>
+          </aside>
+        </section> 
+    </article>
+
+    <article id="popup-container">
+        <section class="contact-section" >
+            <form>
+                <h1>Get in Touch</h1>
+               <p>Have a question or want to learn more about our services? We'd love to hear from you!</p>
+                <div class="form-group">
+                    <label for="name">Name:</label>
+                    <input type="text" id="name" name="name" required>
+                </div>
+                <div class="form-group">
+                    <label for="email">Email:</label>
+                    <input type="email" id="email" name="email" required>
+                </div>
+                <div class="form-group">
+                    <label for="phone">Phone:</label>
+                    <input type="tel" id="phone" name="phone">
+                </div>
+                <div class="form-group">
+                    <label for="message">Message:</label>
+                    <textarea id="message" name="message" required></textarea>
+                </div>
+                <div class="form-group">
+                    <label for="subject">Subject:</label>
+                    <select id="subject" name="subject">
+                        <option value="">Select a subject</option>
+                        <option value="General Inquiry">General Inquiry</option>
+                        <option value="Coaching Services">Coaching Services</option>
+                        <option value="Training Programs">Training Programs</option>
+                        <option value="Partnership Opportunities">Partnership Opportunities</option>
+                        <option value="Other">Other</option>
+                    </select>
+                </div>
+                <button type="submit">Send Message</button>
+            </form>
+        </section>
+
+        <button id="close-popup">Close</button>
+    </article>
+
+    <footer>
+        <div class="footer-container">
+            <div class="footer-section">
+                <h3>About Us</h3>
+                <p>Gifted Company is a leading provider of coaching, training, and consulting services. Our mission is to help individuals and businesses unlock their full potential.</p>
+                <ul>
+                    <li><a href="our story.html">Our Story</a></li>
+                    <li><a href="our team.html">Our Team</a></li>
+                    <li><a href="#carrer">Careers</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h3>Services</h3>
+                <ul>
+                    <li><a href="https://www.humanitarianleadershipacademy.org/learning-programmes/coaching-and-mentoring/">Coaching and Mentorship</a></li>
+                    <li><a href="https://www.intexservices.co.ke/">Online Courses and Training</a></li>
+                    <li><a href="https://findingyourway.com.au/family/family-wellbeing/community-support-networks">Community and Networking</a></li>
+                    <li><a href="https://sims.strathmore.edu/student-life/career-development-services/">Career Development</a></li>
+                    <li><a href="https://centricconsulting.com/business-consulting/">Business Consulting</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h3>Resources</h3>
+                <ul>
+                    <li><a href="blog.html">Blog</a></li>
+                    <li><a href="webinars.html">Webinars</a></li>
+                    <li><a href="ebooks.html">E-books and Guides</a></li>
+                    <li><a href="FAQs.html">FAQs</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h3>Get in Touch</h3>
+                <p>Have a question or want to learn more about our services? Contact us today!</p>
+                <ul>
+                    <li><a href="mailto:info@giftedcompany.com">info@giftedcompany.com</a></li>
+                    <li><a href="tel:+254 740 859 255">+254 740 859 255</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h3>Follow Us</h3>
+                <ul>
+                    <li><a href="#" target="_blank"><i class="fab fa-facebook-f"></i> Facebook</a></li>
+                    <li><a href="#" target="_blank"><i class="fab fa-x-twitter"></i> Twitter</a></li>
+                    <li><a href="#" target="_blank"><i class="fab fa-linkedin-in"></i> LinkedIn</a></li>
+                    <li><a href="#" target="_blank"><i class="fab fa-instagram"></i> Instagram</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-copyright">
+          <hr>
+          <p>&copy; 2024 Gifted Design Company. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script>
+        const toggleBtn = document.querySelector('.toggle_btn')
+        const toggleBtnIcon = document.querySelector('.toggle_btn i')
+        const dropDownMenu = document.querySelector('.dropdown_menu')
+
+        toggleBtn.onclick = function (){
+        dropDownMenu.classList.toggle('open')
+        const isOpen = dropDownMenu.classList.contains('open')
+
+        toggleBtnIcon.classList = isOpen
+        ? 'fa-solid fa-xmark'
+        : 'fa-solid fa-bars'
+        }
+
+        const popupTrigger = document.getElementById('popup-trigger');
+        const popupContainer = document.getElementById('popup-container');
+        const closePopup = document.getElementById('close-popup');
+
+        popupTrigger.addEventListener('click', () => {
+        popupContainer.style.display = 'block';
+        });
+
+        closePopup.addEventListener('click', () => {
+        popupContainer.style.display = 'none';
+        });
+
+    </script>
+ </body>   
+ </html>

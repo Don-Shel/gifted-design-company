@@ -1,0 +1,390 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Josefin+Sans:ital,wght@0,100..700;1,100..700&display=swap" rel="stylesheet">
+    <link rel="icon" href="" class="icon_logo">
+    <title>Gifted Company</title>
+    <style>
+        body{
+            background-color: cornflowerblue;
+            font-family: Josefin sans;
+            height: 100dvh;
+        }
+        /* header */
+        header{
+            position: relative;
+            padding: 0 ;
+            z-index: 100;
+        }
+        .navbar{
+            position: absolute;
+            width: 100%;
+            height: 60px;
+            max-width: 98%;
+            margin: 0 auto;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            position: fixed;
+            background: rgb(1, 197, 89);
+            backdrop-filter: blur(90px);
+            border-radius: 10px;
+        }
+
+        .navbar .logo{
+            font-size: 1.5rem;
+            font-weight: bold;
+            padding: .3rem;
+        }
+
+        .navbar .links a{
+            text-decoration: none;
+        }
+        .navbar .links{
+            padding-right: 1rem;
+            display: flex;
+            gap: 2rem;
+            font-size: 20px;
+            list-style: none;
+        }
+        .navbar .toggle_btn{
+            color: #fff;
+            padding: .6rem;
+            font-size: 1.5rem;
+            cursor: pointer;
+            display: none;
+        }
+
+        .dropdown_menu{
+            display: none;
+            position: absolute;
+            right: 2rem;
+            top: 70px;
+            height: 0;
+            width: 300px;
+            position: fixed;
+            background: rgba(0, 0, 0, 0.1);
+            backdrop-filter: blur(15px);
+            border-radius: 10px;
+            overflow: hidden;
+            transition: height .2s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+
+        .dropdown_menu.open{
+            height: 50px;
+        }
+
+        .dropdown_menu li{
+            padding: 0.6rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .dropdown_menu a{
+            color: #fff;
+            font-size: 1.2rem;
+            text-decoration: none;
+        }
+
+        .dropdown_menu a:hover{
+            color: #ffae00;
+        }
+
+
+        /* responsiveness*/
+        @media (max-width: 768px) {
+            .navbar .links{
+                display: none;
+            }
+
+            .navbar .toggle_btn{
+                display: block;
+            }
+
+            .dropdown_menu{
+                display: block;
+            }
+        }
+
+        @media (max-width: 576px){
+            .dropdown_menu{
+                left: 2rem;
+                width: unset;
+            }
+        }
+
+        .article{
+            position: relative;
+            background-color: #9d72ce;
+            top: 5rem;
+            border-radius: 9px;
+        }
+
+        @media (max-width: 768px) {
+            .article{
+                top: 4.5rem;
+            }
+        }
+
+        .blog-section {
+            background-color: #b17dc5e0;
+            padding: 2em;
+            border-radius: 5px;
+            text-align: center;
+        }
+
+        .blog-posts {
+            margin-top: 20px;
+        }
+
+        .blog-posts h2 {
+            font-size: 24px;
+            margin-bottom: 10px;
+        }
+
+        .blog-posts ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .blog-posts li {
+            margin-bottom: 20px;
+            padding: 20px;
+            border: 1px solid #ddd;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .blog-posts h3 {
+            font-size: 18px;
+            margin-bottom: 10px;
+        }
+
+        .blog-posts a {
+            text-decoration: none;
+            color: #337ab7;
+        }
+
+        .blog-posts a:hover {
+           color: #23527c;
+        }
+
+        .blog-categories {
+             margin-bottom: 20px;
+        }
+
+        .blog-categories h2 {
+            font-size: 24px;
+            margin-bottom: 10px;
+        }
+
+        .blog-categories ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .blog-categories li {
+            margin-bottom: 10px;
+        }
+
+        .blog-categories a {
+            text-decoration: none;
+            color: #337ab7;
+        }
+
+        .blog-categories a:hover {
+            color: #23527c;
+        }
+
+        .blog-search {
+             margin-top: 40px;
+        }
+
+        .blog-search h2 {
+            font-size: 24px;
+            margin-bottom: 10px;
+        }
+
+        .blog-search form {
+             margin-top: 20px;
+        }
+
+        .blog-search input[type="search"] {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+
+        .blog-search button[type="submit"] {
+            background-color: #337ab7;
+            color: #fff;
+            padding: 10px 20px;
+            margin: 1rem;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .blog-search button[type="submit"]:hover {
+            background-color: #23527c;
+        }
+        .search-results {
+            margin-top: 20px;
+            padding: 20px;
+            border: 1px solid #ccc;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            }
+
+        .search-result {
+            margin-bottom: 20px;
+            padding: 20px;
+            border-bottom: 1px solid #ccc;
+        }
+
+        .search-result:last-child {
+            border-bottom: none;
+        }
+
+        .search-result a {
+            text-decoration: none;
+            color: #337ab7;
+        }
+
+        .search-result a:hover {
+            color: #23527c;
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <main>
+            <div class="navbar">
+                <div class="logo">Gifted Design Co.</div>
+                <ul class="links">
+                    <li><a href="main.html">Home</a></li>
+                </ul>
+                <div class="toggle_btn">
+                    <i class="fa-solid fa-bars"></i>
+                </div>
+            </div>
+
+            <div class="dropdown_menu">
+                <li><a href="main.html">Home</a></li>
+            </div>
+        </main>
+    </header>
+
+    <article class="article">
+        <section class="blog-section">
+            <h1>Our Blog</h1>
+            <p>Stay up-to-date with the latest news, trends, and insights from Gifted Company. Our blog features articles on personal growth, professional development, and industry trends.</p>
+            <div class="blog-posts">
+              <h2>Recent Posts</h2>
+              <ul>
+                <li>
+                  <h3><a href="#">The Power of Mindfulness in the Workplace</a></h3>
+                  <p>Learn how mindfulness can improve productivity, reduce stress, and increase job satisfaction.</p>
+                  <p><span class="author">By: Jane Doe</span> | <span class="date">March 10, 2023</span></p>
+                </li>
+                <li>
+                  <h3><a href="#">5 Ways to Boost Your Confidence at Work</a></h3>
+                  <p>Discover the secrets to building confidence and achieving success in your career.</p>
+                  <p><span class="author">By: John Smith</span> | <span class="date">February 20, 2023</span></p>
+                </li>
+                <li>
+                  <h3><a href="#">The Future of Work: Trends to Watch in 2023</a></h3>
+                  <p>Stay ahead of the curve with our expert analysis of the latest trends shaping the future of work.</p>
+                  <p><span class="author">By: Emily Johnson</span> | <span class="date">January 15, 2023</span></p>
+                </li>
+                <!--more blog posts here -->
+              </ul>
+            </div>
+            <div class="blog-categories">
+              <h2>Categories</h2>
+              <ul>
+                    <li><a href="#">Personal Growth</a></li>
+                    <li><a href="#">Professional Development</a></li>
+                    <li><a href="#">Industry Trends</a></li>
+                    <li><a href="#">Productivity</a></li>
+                    <li><a href="#">Wellness</a></li>
+              </ul>
+            </div>
+            <div class="blog-search">
+              <h2>Search Our Blog</h2>
+                <form>
+                    <input type="search" id="search-input" name="search" placeholder="Search...">
+                    <button type="submit" id="search-btn">Search</button>
+                    <div id="search-results"></div>
+                </form>
+            </div>
+          </section>
+    </article>
+   
+    <script>
+        const toggleBtn = document.querySelector('.toggle_btn')
+        const toggleBtnIcon = document.querySelector('.toggle_btn i')
+        const dropDownMenu = document.querySelector('.dropdown_menu')
+
+        toggleBtn.onclick = function (){
+        dropDownMenu.classList.toggle('open')
+        const isOpen = dropDownMenu.classList.contains('open')
+
+        toggleBtnIcon.classList = isOpen
+        ? 'fa-solid fa-xmark'
+        : 'fa-solid fa-bars'
+        }
+    </script>    
+    
+    <!--<script>
+          JavaScript 
+        const searchInput = document.getElementById('search-input');
+        const searchBtn = document.getElementById('search-btn');
+        const searchResults = document.getElementById('search-results');
+
+        searchBtn.addEventListener('click', async () => {
+        const searchTerm = searchInput.value.trim();
+        if (searchTerm) {
+            try {
+            const url = `https://api.duckduckgo.com/html/?q=${searchTerm}&kl=wt-wt`;
+            const response = await fetch(url);
+            const data = await response.text();
+            const parser = new DOMParser();
+            const doc = parser.parseFromString(data, 'text/html');
+            const results = doc.querySelectorAll('.result');
+            searchResults.innerHTML = '';
+            results.forEach((result) => {
+                const title = result.querySelector('.result__title').textContent;
+                const link = result.querySelector('.result__a').href;
+                const snippet = result.querySelector('.result__snippet').textContent;
+                const resultHTML = `
+                <div class="search-result">
+                    <h2><a href="${link}" target="_blank">${title}</a></h2>
+                    <p>${snippet}</p>
+                </div>
+                `;
+                searchResults.innerHTML += resultHTML;
+            });
+            } catch (error) {
+            console.error(error);
+            searchResults.innerHTML = 'Error: Unable to retrieve search results.';
+            }
+        } else {
+            searchResults.innerHTML = 'Please enter a search term.';
+        }
+        });
+    </script>-->
+
+
+</body>
+</html>    

@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Josefin+Sans:ital,wght@0,100..700;1,100..700&display=swap" rel="stylesheet">
+    <link rel="icon" href="Gifted logo.jpg" class="icon_logo">
+    <title>Gifted Company</title>
+    <style>
+        /* Add some basic styling to make the page look decent */
+        body{
+            font-family: josefin sans;
+            font-weight: bold;
+            font-size: larger;
+            overflow: hidden;
+            background: linear-gradient(to right, #02c9ae, #2702ad);
+        }  
+            
+        #loader-container {
+        position: absolute;
+        top: 80%;
+        left: 55%;
+        transform: translate(-50%, -50%);
+        text-align: center;
+        }
+        #loader {
+        width: 50px;
+        height: 50px;
+        border: 5px solid #0ee9cc;
+        border-top: 5px solid #3700ff;
+        border-radius: 50%;
+        animation: spin 1s linear infinite;
+        }
+        @keyframes spin {
+        0% {
+            transform: rotate(0deg);
+        }
+        100% {
+            transform: rotate(360deg);
+        }
+        }
+        #loader-container p{
+            position: relative;
+            font-size: 26px;
+            font-family: josefin sans;
+            letter-spacing: 4px;
+            left: -2rem;
+        }
+        .image img{
+            width: 100%;
+            height: auto;
+            position: fixed;
+            opacity: .5;
+        }
+        @media (max-width: 768px) {
+            .image img{
+                width: 96%;
+                height: 95%;
+                object-position: center;
+                border-radius: 10px;
+            }
+            #loader-container {
+                position: absolute;
+                top: 90%;
+                left: 60%;
+            }
+        }
+        .welcome-screen {
+            position: relative;
+            margin: 1rem;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            text-align: center;
+            font-family: josefin sans;
+        }
+
+        .welcome-screen h1 {
+            font-size: 38px;
+            margin-bottom: 20px;
+        }
+
+        .welcome-screen p {
+            font-size: 18px;
+            margin-bottom: 20px;
+        }
+
+        .enter-btn {
+            background-color: #4CAF50;
+            color: #fff;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 10px;
+            cursor: pointer;
+        }
+
+        .enter-btn:hover {
+            background-color: #3e8e41;
+        }
+    </style>
+</head>
+<body>
+    <article>
+        <div class="image">
+            <img src="Giftedlogo.jpg" alt="">
+        </div>
+        <div id="loader-container">
+            <div id="loader"></div>
+            <p>Loading...</p>
+        </div>
+        <div class="welcome-screen">
+            <h1>Welcome to Gifted Company</h1>
+            <p>We're a team of innovators dedicated to making a difference in the world.</p>
+            <p>Our mission is to provide cutting-edge solutions that inspire and empower individuals.</p>
+        </div>
+    </article>
+
+    <script>
+        // Set a timeout to redirect to the main website after 3 seconds
+        setTimeout(function() {
+        window.location.href = "main.html";
+        }, 2000);
+    </script>
+
+     <!--<script>
+        const welcomeScreen = document.querySelector('.welcome-screen');
+        const enterBtn = document.querySelector('.enter-btn');
+
+        enterBtn.addEventListener('click', () => {
+        // Hide the welcome screen and show the main screen
+        welcomeScreen.style.display = 'none';
+        document.querySelector('.main-screen').style.display = 'block';
+        });
+    </script>-->
+</body>
+</html>
