@@ -197,6 +197,106 @@
             border-radius: 10px;
             background-color: #f0f0f0;
         }
+
+        /*=============popup section=================*/
+        #popup-container {
+            display: none; /* hide the popup container by default */
+            position: fixed;
+            top: 0;
+            right: 0;
+            bottom: 0;
+            left: 0;
+            background-color: transparent;
+            backdrop-filter: blur(10px);
+            z-index: 1900;
+          }
+        
+          #popup {
+            
+            padding: 20px;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 400px;
+            height: 200px;
+          }
+        
+          #close-popup {
+          position: absolute;
+          top: 35rem;
+          right: 10px;
+          font-family: 19px;
+          background-color: #af7de9;
+          padding: .2rem;
+          font-family: josefin sans;
+          border-radius: 10px;
+          cursor: pointer;
+          }
+          /*=============contact section=================*/
+          .contact-section {
+              background-color: #a9d2e2;
+              padding: 2em;
+              padding: 20px;
+              border-radius: 5px;
+              box-shadow: 0 0 10px rgba(0, 0, 0, 0.6);
+              position: fixed;
+              top: 50%;
+              left: 50%;
+              transform: translate(-50%, -50%);
+              width: 400px;
+              height: 90%;;
+          }
+          
+          .contact-section h1{
+              font-size: 30px;
+              color: #337ab7;
+              margin: 0;
+              text-align: center;
+          }
+        
+         /* #contact-form {
+              max-width: 600px;
+              margin: 40px auto;
+              padding: 20px;
+              border: 1px solid #ddd;
+              border-radius: 10px;
+              background-color: #af7de9;
+              box-shadow: 0 0 10px rgba(0, 0, 0, 0.7);
+          }*/
+          
+          .form-group {
+              margin-bottom: 20px;
+          }
+          
+          label {
+              display: block;
+              margin-bottom: 10px;
+          }
+          
+          input, textarea, select {
+              width: 100%;
+              height: 35px;
+              border: 1px solid #ccc;
+              border-radius: 5px;
+          }
+          
+          button[type="submit"] {
+              background-color: #337ab7;
+              color: #fff;
+              padding: 10px 20px;
+              border: none;
+              border-radius: 5px;
+              font-family: josefin sans;
+              cursor: pointer;
+          }
+          
+          button[type="submit"]:hover {
+              background-color: #23527c;
+          }
+
     </style>
 </head>
 <body>
@@ -207,9 +307,9 @@
                 <div class="logo">Gifted Design Co.</div>
                 <ul class="links">
                     <li><a href="main.html">Home</a></li>
-                    <li><a href="">About</a></li>
-                    <li><a href="">Skills</a></li>
-                    <li><a href="">Contacts</a></li>
+                    <li><a href="our team.html">Our Team</a></li>
+                    <li><a href="service.html">Services</a></li>
+                    <li><a href="contact.html">Contact Us</a></li>
                 </ul>
                 <div class="toggle_btn">
                     <i class="fa-solid fa-bars"></i>
@@ -218,9 +318,9 @@
 
             <div class="dropdown_menu">
                 <li><a href="main.html">Home</a></li>
-                <li><a href="#">About</a></li>
-                <li><a href="#">Skills</a></li>
-                <li><a href="#">Contacts</a></li>
+                <li><a href="our team.html">Our Team</a></li>
+                    <li><a href="service.html">Services</a></li>
+                    <li><a id="popup-trigger">Contact Us</a></li>
             </div>
         </main>
     </header>
@@ -249,6 +349,45 @@
             </div>
         </section>
     </article>
+
+    <article id="popup-container">
+            <section class="contact-section" >
+                <form>
+                    <h1>Get in Touch</h1>
+                   <p>Have a question or want to learn more about our services? We'd love to hear from you!</p>
+                    <div class="form-group">
+                        <label for="name">Name:</label>
+                        <input type="text" id="name" name="name" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="email">Email:</label>
+                        <input type="email" id="email" name="email" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="phone">Phone:</label>
+                        <input type="tel" id="phone" name="phone">
+                    </div>
+                    <div class="form-group">
+                        <label for="message">Message:</label>
+                        <textarea id="message" name="message" required></textarea>
+                    </div>
+                    <div class="form-group">
+                        <label for="subject">Subject:</label>
+                        <select id="subject" name="subject">
+                            <option value="">Select a subject</option>
+                            <option value="General Inquiry">General Inquiry</option>
+                            <option value="Coaching Services">Coaching Services</option>
+                            <option value="Training Programs">Training Programs</option>
+                            <option value="Partnership Opportunities">Partnership Opportunities</option>
+                            <option value="Other">Other</option>
+                        </select>
+                    </div>
+                    <button type="submit">Send Message</button>
+                </form>
+            </section>
+    
+            <button id="close-popup">Close</button>
+        </article>
 
     <script>
         const toggleBtn = document.querySelector('.toggle_btn')
@@ -289,5 +428,17 @@
 
         document.querySelector('.register button').addEventListener('click', function() {
             alert('Thank you for registering for our webinar! We will send you a confirmation email with details on how to join.');
+        });
+
+        const popupTrigger = document.getElementById('popup-trigger');
+        const popupContainer = document.getElementById('popup-container');
+        const closePopup = document.getElementById('close-popup');
+
+        popupTrigger.addEventListener('click', () => {
+        popupContainer.style.display = 'block';
+        });
+
+        closePopup.addEventListener('click', () => {
+        popupContainer.style.display = 'none';
         });
     </script>
