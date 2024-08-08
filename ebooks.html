@@ -231,9 +231,9 @@
                 <div class="logo">Gifted Design Co.</div>
                 <ul class="links">
                     <li><a href="main.html">Home</a></li>
-                    <li><a href="">About</a></li>
-                    <li><a href="">Skills</a></li>
-                    <li><a id="popup-trigger">Contacts</a></li>
+                    <li><a href="our team.html">Our Team</a></li>
+                    <li><a href="service.html">Services</a></li>
+                    <li><a href="contact.html">Contact Us</a></li>
                 </ul>
                 <div class="toggle_btn">
                     <i class="fa-solid fa-bars"></i>
@@ -242,8 +242,8 @@
 
             <div class="dropdown_menu">
                 <li><a href="main.html">Home</a></li>
-                <li><a href="#">About</a></li>
-                <li><a href="#">Skills</a></li>
+                <li><a href="our team.html">Our Team</a></li>
+                <li><a href="service.html">Services</a></li>
                 <li><a id="popup-trigger">Contacts</a></li>
             </div>
         </main>
@@ -415,6 +415,19 @@
             alert('Error downloading book. Please try again.');
         }
         });
+
+        const popupTrigger = document.getElementById('popup-trigger');
+        const popupContainer = document.getElementById('popup-container');
+        const closePopup = document.getElementById('close-popup');
+
+        popupTrigger.addEventListener('click', () => {
+        popupContainer.style.display = 'block';
+        });
+
+        closePopup.addEventListener('click', () => {
+        popupContainer.style.display = 'none';
+        });
+
     </script> 
     <!--<script>    
         //link download by text
